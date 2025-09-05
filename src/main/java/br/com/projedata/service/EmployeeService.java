@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EmployeeService {
     public List<Employee> insertEmployees() {
@@ -33,9 +35,12 @@ public class EmployeeService {
             if (!isSalaryIncreased) {
                 throw new IllegalArgumentException("Erro ao aumentar salarios");
             }
-
         }
     }
 
+    public Map<String, List<Employee>> groupEmployeesByRole(List<Employee> employees) {
+        return employees.stream()
+                .collect(Collectors.groupingBy(Employee::getRole));
+    }
 
 }
