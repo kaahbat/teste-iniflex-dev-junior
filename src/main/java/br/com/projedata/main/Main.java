@@ -7,6 +7,7 @@ import br.com.projedata.service.EmployeeService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class Main {
@@ -29,6 +30,13 @@ public class Main {
         List<Employee> birthdayEmployees = employeeService.getBirthdayEmployees(employees, 10, 12);
         printEmployees("Aniversariantes de Outubro e Dezembro", birthdayEmployees);
 
+        Optional<Employee> oldestEmployeeOpt = employeeService.getOldestEmployee(employees);
+        if (oldestEmployeeOpt.isPresent()) {
+            printOldestEmployee(oldestEmployeeOpt.get());
+        } else {
+            System.out.println("Não foi possível encontrar o funcionário mais velho.");
+        }
+
     }
     private static void printEmployees(String title, List<Employee> employees) {
         System.out.println("\n--- " + title + " ---");
@@ -41,6 +49,10 @@ public class Main {
             employeeList.forEach(System.out::println);
             System.out.println();
         });
+    }
+    private static void printOldestEmployee(Employee employee) {
+        System.out.println("\n--- Funcionário com Maior Idade ---");
+        System.out.println("Nome: " + employee.getName() + ", Idade: " + employee.getAge());
     }
 }
 

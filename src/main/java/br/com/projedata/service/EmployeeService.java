@@ -4,9 +4,7 @@ import br.com.projedata.model.Employee;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EmployeeService {
@@ -56,5 +54,11 @@ public class EmployeeService {
                 })
                 .collect(Collectors.toList());
     }
-
+    public Optional<Employee> getOldestEmployee(List<Employee> employees) {
+        if (employees == null || employees.isEmpty()) {
+            return Optional.empty();
+        }
+        return employees.stream()
+                .min(Comparator.comparing(Employee::getDateOfBirth));
+    }
 }
