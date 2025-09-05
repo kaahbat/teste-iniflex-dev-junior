@@ -26,6 +26,8 @@ public class Main {
 
         printGroupedEmployees(employeesByRole);
 
+        List<Employee> birthdayEmployees = employeeService.getBirthdayEmployees(employees, 10, 12);
+        printEmployees("Aniversariantes de Outubro e Dezembro", birthdayEmployees);
 
     }
     private static void printEmployees(String title, List<Employee> employees) {

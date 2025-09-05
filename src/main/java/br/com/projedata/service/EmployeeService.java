@@ -43,4 +43,18 @@ public class EmployeeService {
                 .collect(Collectors.groupingBy(Employee::getRole));
     }
 
+    public List<Employee> getBirthdayEmployees(List<Employee> employees, int... months) {
+        return employees.stream()
+                .filter(employee -> {
+                    int birthMonth = employee.getDateOfBirth().getMonthValue();
+                    for (int month : months) {
+                        if (birthMonth == month) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
+    }
+
 }
