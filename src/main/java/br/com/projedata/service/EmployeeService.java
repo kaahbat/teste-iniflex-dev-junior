@@ -29,7 +29,11 @@ public class EmployeeService {
 
     public void increaseSalaries(List<Employee> employees, BigDecimal percentage) {
         for (Employee employee : employees) {
-            employee.increaseSalary(percentage);
+            boolean isSalaryIncreased = employee.increaseSalary(percentage);
+            if (!isSalaryIncreased) {
+                throw new IllegalArgumentException("Erro ao aumentar salarios");
+            }
+
         }
     }
 
