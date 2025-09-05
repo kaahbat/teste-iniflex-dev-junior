@@ -45,6 +45,7 @@ public class Main {
         BigDecimal totalSalaries = employeeService.calculateTotalSalaries(employees);
         printTotalSalaries(totalSalaries);
 
+        printMinimumWagesReport(employees);
 
     }
     private static void printEmployees(String title, List<Employee> employees) {
@@ -67,6 +68,16 @@ public class Main {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         System.out.println("\n--- Total dos Salários ---");
         System.out.println("R$ " + decimalFormat.format(totalSalaries));
+    }
+    private static void printMinimumWagesReport(List<Employee> employees) {
+        BigDecimal minimumWage = new BigDecimal("1212.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+
+        System.out.println("\n--- Salários Mínimos por Funcionário ---");
+        for (Employee employee : employees) {
+            BigDecimal numberOfMinimumWages = employee.getSalary().divide(minimumWage, 2, RoundingMode.HALF_UP);
+            System.out.println(employee.getName() + " ganha " + decimalFormat.format(numberOfMinimumWages) + " salários mínimos.");
+        }
     }
 
 }
