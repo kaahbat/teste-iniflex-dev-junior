@@ -68,4 +68,10 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
+    public BigDecimal calculateTotalSalaries(List<Employee> employees) {
+        return employees.stream()
+                .map(Employee::getSalary)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 }

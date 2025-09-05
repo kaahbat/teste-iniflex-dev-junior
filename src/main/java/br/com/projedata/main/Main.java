@@ -5,6 +5,8 @@ import br.com.projedata.service.EmployeeService;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,6 +41,11 @@ public class Main {
 
         List<Employee> sortedEmployees = employeeService.getEmployeesSortedByName(employees);
         printEmployees("Lista de Funcionários em Ordem Alfabética", sortedEmployees);
+
+        BigDecimal totalSalaries = employeeService.calculateTotalSalaries(employees);
+        printTotalSalaries(totalSalaries);
+
+
     }
     private static void printEmployees(String title, List<Employee> employees) {
         System.out.println("\n--- " + title + " ---");
@@ -56,6 +63,12 @@ public class Main {
         System.out.println("\n--- Funcionário com Maior Idade ---");
         System.out.println("Nome: " + employee.getName() + ", Idade: " + employee.getAge());
     }
+    private static void printTotalSalaries(BigDecimal totalSalaries) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        System.out.println("\n--- Total dos Salários ---");
+        System.out.println("R$ " + decimalFormat.format(totalSalaries));
+    }
+
 }
 
 
