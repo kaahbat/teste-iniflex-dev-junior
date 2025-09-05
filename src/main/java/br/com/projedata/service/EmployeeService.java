@@ -22,4 +22,16 @@ public class EmployeeService {
         employees.add(new Employee("Helena", LocalDate.of(1996, 9, 2), new BigDecimal("2799.93"), "Gerente"));
         return employees;
     }
+
+    public void removeEmployeeByName(List<Employee> employees, String name) {
+        employees.removeIf(employee -> employee.getName().equals(name));
+    }
+
+    public void increaseSalaries(List<Employee> employees, BigDecimal percentage) {
+        for (Employee employee : employees) {
+            employee.increaseSalary(percentage);
+        }
+    }
+
+
 }
