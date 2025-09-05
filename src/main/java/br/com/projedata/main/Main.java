@@ -37,6 +37,8 @@ public class Main {
             System.out.println("Não foi possível encontrar o funcionário mais velho.");
         }
 
+        List<Employee> sortedEmployees = employeeService.getEmployeesSortedByName(employees);
+        printEmployees("Lista de Funcionários em Ordem Alfabética", sortedEmployees);
     }
     private static void printEmployees(String title, List<Employee> employees) {
         System.out.println("\n--- " + title + " ---");

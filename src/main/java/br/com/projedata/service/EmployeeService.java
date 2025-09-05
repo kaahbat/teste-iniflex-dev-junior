@@ -61,4 +61,11 @@ public class EmployeeService {
         return employees.stream()
                 .min(Comparator.comparing(Employee::getDateOfBirth));
     }
+
+    public List<Employee> getEmployeesSortedByName(List<Employee> employees) {
+        return employees.stream()
+                .sorted(Comparator.comparing(Employee::getName))
+                .collect(Collectors.toList());
+    }
+
 }
